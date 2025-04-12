@@ -6,7 +6,6 @@ class Employee(models.Model):
     first_name = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length=100, blank=True, null=True)
     dept_id = models.CharField(max_length=255, blank=True, null=True)  # Assuming this is a string field
-    email = models.EmailField(max_length=255, blank=True, null=True)
     employment_type = models.CharField(max_length=50, blank=True, null=True)  # Assuming this is a string field
     status = models.CharField(max_length=50, blank=True, null=True)  # Assuming this is a string field
 
@@ -31,10 +30,7 @@ class PurchaseRequest(models.Model):
     MATERIAL = 'MATERIAL'
     ASSETS = 'ASSETS'
 
-    REQ_TYPE_CHOICES = [
-        (MATERIAL, 'Material'),
-        (ASSETS, 'Assets'),
-    ]
+    
 
     request_id = models.CharField(max_length=50, primary_key=True, blank=True)
     employee_id = models.CharField(max_length=50, blank=True, null=True)  # Changed to character varying
@@ -44,11 +40,6 @@ class PurchaseRequest(models.Model):
     required_date = models.DateField()
 
     
-    req_type = models.CharField(
-        max_length=10,
-        choices=REQ_TYPE_CHOICES,
-        default=MATERIAL,  # Default to 'Material'
-    )
 
     def save(self, *args, **kwargs):
         if not self.request_id:

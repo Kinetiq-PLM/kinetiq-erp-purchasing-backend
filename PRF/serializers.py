@@ -7,7 +7,7 @@ from .models import Employee, Approval
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
-        fields = ['employee_id', 'first_name', 'last_name', 'dept_id', 'email', 'employment_type', 'status']
+        fields = ['employee_id', 'first_name', 'last_name', 'dept_id', 'employment_type', 'status']
 
 # Approval Serializer
 class ApprovalSerializer(serializers.ModelSerializer):
@@ -31,7 +31,6 @@ class PurchaseRequestSerializer(serializers.ModelSerializer):
             'valid_date',
             'document_date',
             'required_date',
-            'req_type',
             'employee'
         ]
 

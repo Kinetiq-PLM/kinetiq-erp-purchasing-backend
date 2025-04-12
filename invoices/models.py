@@ -1,22 +1,30 @@
 from django.db import models
 import datetime  
 
+class DocumentItems(models.Model):
+    content_id = models.CharField(max_length=30, primary_key=True)
+
+    class Meta:
+        db_table = 'document_items'
+        managed = False 
+
 class APInvoice(models.Model):
     invoice_id = models.CharField(max_length=30, primary_key=True)  
 
-    # Change this to a ForeignKey
-    purchase_order = models.ForeignKey(
-    'purchase_order.PurchaseOrder',
-    on_delete=models.CASCADE,
-     to_field='purchase_id',
-    null=True,  # Allow NULL values
-    blank=True
-)
+
 
     status = models.CharField(
         max_length=20,
         choices=[("Open", "Open"), ("Closed", "Closed"), ("Cancelled", "Cancelled"), ("Draft", "Draft")],
         default="Draft",
+    )
+    content_id = models.ForeignKey(
+        DocumentItems,
+        to_field='content_id',
+        db_column='content_id',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
     )
     document_no = models.IntegerField(default=0)
     document_date = models.DateField(default=datetime.date.today)

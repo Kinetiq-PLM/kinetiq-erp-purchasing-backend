@@ -11,7 +11,13 @@ class PurchaseOrder(models.Model):
     ]
 
     purchase_id = models.CharField(max_length=50, primary_key=True, blank=True)
-    quotation_id = models.ForeignKey(PurchaseQuotation, on_delete=models.SET_NULL, null=True, blank=True)
+    quotation_id = models.ForeignKey(
+        PurchaseQuotation,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        db_column='quotation_id'  # Explicitly set the database column name
+    )
     order_date = models.DateField()
     delivery_date = models.DateField()
     document_date = models.DateField()
