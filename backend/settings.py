@@ -103,11 +103,11 @@ WSGI_APPLICATION = "backend.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "Kinetiq-DB-Schema",
+        "NAME": "Kinetiq-DB", #Kinetiq-Db-Schema
         "USER": 'postgres',
-        "PASSWORD": '102418',
-        "HOST": 'localhost',
-        "PORT": '5432',
+        "PASSWORD": 'KntBg3jIY0DbpH8G9bwt', #102418
+        "HOST": '127.0.0.1', #localhost
+        "PORT": '15432', #5432
         "OPTIONS": {
             "options": "-c search_path=purchasing,public",
             
