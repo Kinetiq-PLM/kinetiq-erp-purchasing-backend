@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-a6mdos)*anmvkter-%mt0#7(7vvr9vx_zg$g=vl@iz=@wpgc+-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["adyzx2m6bh.execute-api.ap-southeast-1.amazonaws.com","127.0.0.1"]
 
 
 # Application definition
@@ -100,33 +100,31 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "Kinetiq-DB", #Kinetiq-Db-Schema
-        "USER": 'postgres',
-        "PASSWORD": 'KntBg3jIY0DbpH8G9bwt', #102418
-        "HOST": '127.0.0.1', #localhost
-        "PORT": '15432', #5432
-        "OPTIONS": {
-            "options": "-c search_path=purchasing,public",
-            
-
-        },
-
-    }
-}
-
+# import os
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'your_db_name',
-#         'USER': 'your_db_user',
-#         'PASSWORD': 'your_db_password',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
+#         'NAME': os.getenv('DB_NAME', 'Kinetiq-DB'),
+#         'USER': os.getenv('DB_USER', 'postgres'),
+#         'PASSWORD': os.getenv('DB_PASSWORD', 'KntBg3jIY0DbpH8G9bwt'),
+#         'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+#         'PORT': os.getenv('DB_PORT', '15432'),
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        "NAME": "Kinetiq-DB-Schema",
+        "USER": 'postgres',
+        "PASSWORD": '102418', 
+        "HOST": 'localhost', 
+        "PORT": '5432', 
+       "OPTIONS": {
+           "options": "-c search_path=purchasing,public",
+    }
+}
+}
 
 
 # Password validation

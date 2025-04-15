@@ -27,7 +27,7 @@ class PurchaseQuotation(models.Model):
     downpayment_request = models.IntegerField(default=0, null=True, blank=True)
     remarks = models.TextField(blank=True, null=True)
     delivery_loc = models.CharField(max_length=255, blank=True, null=True)
-    document_no = models.IntegerField(unique=True, blank=True, null=True)  # Document number
+    document_no = models.IntegerField( blank=True, null=True)  # Document number
     valid_date = models.DateField()
     document_date = models.DateField()
     required_date = models.DateField()
