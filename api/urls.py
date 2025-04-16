@@ -17,7 +17,7 @@ from .views import get_data
 
 # Define the URL patterns
 urlpatterns = [
-    path('api/', include(router.urls)),  # Includes all generated routes under the 'api/' prefix (e.g., /api/items/)
+    path(' ', include(router.urls)),  # Includes all generated routes under the 'api/' prefix (e.g., /api/items/)
     path("data/", get_data),  # API endpoint
     path("invoices/", include("invoices.urls")),
     path("prf/", include("PRF.urls")),
@@ -26,5 +26,7 @@ urlpatterns = [
     path('purchase-orders/', include('purchase_order.urls')),
     path("credit-memo/", include("credit_memo.urls")),
     path("quotation-content/", include("quotation_contents.urls")),
+    path("batch-inspection/", include("batch_inspection.urls")),
+    path("received-shipment/", include("received_shipments.urls")),
 
 ]

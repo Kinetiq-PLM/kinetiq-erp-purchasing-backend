@@ -28,10 +28,7 @@ class Migration(migrations.Migration):
             model_name='purchaserequest',
             name='department',
         ),
-        migrations.RemoveField(
-            model_name='purchaserequest',
-            name='email_address',
-        ),
+        
         migrations.RemoveField(
             model_name='purchaserequest',
             name='purchase_description',

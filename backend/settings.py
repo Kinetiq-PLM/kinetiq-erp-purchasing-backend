@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "purchase_order",
     "credit_memo",
     "quotation_contents",
+    "batch_inspection",
+    "received_shipments",
     
 
 ]

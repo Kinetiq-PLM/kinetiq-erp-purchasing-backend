@@ -25,7 +25,7 @@ class Approval(models.Model):
     def __str__(self):
         return f"Approval {self.approval_id}"
 
-# PurchaseRequest model (WITH email_address and department)
+
 class PurchaseRequest(models.Model):
     MATERIAL = 'MATERIAL'
     ASSETS = 'ASSETS'

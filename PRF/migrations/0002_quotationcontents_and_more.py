@@ -36,10 +36,7 @@ class Migration(migrations.Migration):
             old_name='date_valid',
             new_name='valid_date',
         ),
-        migrations.RemoveField(
-            model_name='purchaserequest',
-            name='email',
-        ),
+       
         migrations.RemoveField(
             model_name='purchaserequest',
             name='id',

@@ -15,11 +15,8 @@ class Migration(migrations.Migration):
             name='department',
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
-        migrations.AddField(
-            model_name='purchaserequest',
-            name='email_address',
-            field=models.EmailField(blank=True, max_length=100, null=True),
-        ),
+       
+        
         migrations.AlterField(
             model_name='purchaserequest',
             name='request_id',

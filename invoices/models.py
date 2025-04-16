@@ -1,17 +1,33 @@
 from django.db import models
-import datetime  
+import datetime
+
 
 class DocumentItems(models.Model):
     content_id = models.CharField(max_length=30, primary_key=True)
 
     class Meta:
-        db_table = 'document_items'
-        managed = False 
+        db_table = 'operations"."document_items'
+        managed = False
+
+
+class ExternalModule(models.Model):
+    content_id = models.ForeignKey(
+        DocumentItems,  # Reference the DocumentItems model
+        to_field='content_id',  # Use the content_id field in DocumentItems
+        db_column='content_id',  # Map to the content_id column in the database
+        on_delete=models.CASCADE,  # Define behavior when the related DocumentItems is deleted
+        primary_key=True  # Explicitly set content_id as the primary key
+    )
+    purchase_id = models.CharField(max_length=30)  # Purchase ID
+    request_id = models.CharField(max_length=30)  # Request ID
+
+    class Meta:
+        db_table = 'operations"."external_module'  # Reference the exact table name
+        managed = False  # Django will not manage this table
+
 
 class APInvoice(models.Model):
-    invoice_id = models.CharField(max_length=30, primary_key=True)  
-
-
+    invoice_id = models.CharField(max_length=30, primary_key=True)
 
     status = models.CharField(
         max_length=20,
@@ -39,8 +55,6 @@ class APInvoice(models.Model):
     def __str__(self):
         return self.invoice_id
 
-    
     class Meta:
         db_table = 'purchase_invoice'  # This is the name of the table in PostgreSQL
-
-        managed = True # Ensure Django manages the table if needed
+        managed = True  # Ensure Django manages the table if needed

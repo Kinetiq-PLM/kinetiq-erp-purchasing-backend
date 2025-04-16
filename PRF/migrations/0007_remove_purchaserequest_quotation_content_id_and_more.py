@@ -16,11 +16,7 @@ class Migration(migrations.Migration):
             name='dept_id',
             field=models.CharField(blank=True, max_length=255, null=True),
         ),
-        migrations.AddField(
-            model_name='employee',
-            name='email',
-            field=models.EmailField(blank=True, max_length=255, null=True),
-        ),
+        
         migrations.AddField(
             model_name='employee',
             name='employment_type',

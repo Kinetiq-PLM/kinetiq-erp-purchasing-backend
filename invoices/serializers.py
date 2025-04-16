@@ -1,16 +1,20 @@
 from rest_framework import serializers
-from .models import APInvoice
+from .models import APInvoice, ExternalModule, DocumentItems  # Ensure ExternalModule and DocumentItems are imported
+
 
 class APInvoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = APInvoice
-        fields = "__all__"  # ✅ Include all fields from the model
+        fields = "__all__"  # Include all fields from the APInvoice model
 
 
-# serializers.py is specific to Django REST Framework (DRF), 
-# which is an optional package for building APIs.
+class ExternalModuleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExternalModule
+        fields = "__all__"  # Include all fields from the ExternalModule model
 
-# serializers.ModelSerializer → Automatically converts Django model instances into JSON format (and vice versa).
-# class Meta: → Provides metadata about the serializer, specifying:
-# model = Item → The model being serialized.
-# fields = '__all__' → Includes all fields of the Item model in the serialized output.
+
+class DocumentItemsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DocumentItems
+        fields = "__all__"  # Include all fields from the DocumentItems model

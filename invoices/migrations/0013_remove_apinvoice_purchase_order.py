@@ -9,9 +9,4 @@ class Migration(migrations.Migration):
         ('invoices', '0012_documentitems_remove_apinvoice_purchase_order_and_more'),
     ]
 
-    operations = [
-        migrations.RemoveField(
-            model_name='apinvoice',
-            name='purchase_order',
-        ),
-    ]
+

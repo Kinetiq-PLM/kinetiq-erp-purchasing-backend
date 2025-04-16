@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255)),
                 ('department', models.CharField(max_length=255)),
-                ('email', models.EmailField(max_length=254)),
+            
                 ('request_type', models.CharField(default='PROJECT', max_length=50)),
                 ('date_requested', models.DateField()),
                 ('date_valid', models.DateField()),

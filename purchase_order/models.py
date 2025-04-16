@@ -7,7 +7,7 @@ class PurchaseOrder(models.Model):
         ('Pending', 'Pending'),
         ('Approved', 'Approved'),
         ('Completed', 'Completed'),
-        ('Cancelled', 'Cancelled'),
+        ('Rejected', 'Rejected'),
     ]
 
     purchase_id = models.CharField(max_length=50, primary_key=True, blank=True)
@@ -40,6 +40,7 @@ class PurchaseOrder(models.Model):
                 last_number = 0
 
             new_number = last_number + 1
+            
             self.purchase_id = f"PO-{current_year}-{new_number:06d}"
 
         super().save(*args, **kwargs)
@@ -48,3 +49,30 @@ class PurchaseOrder(models.Model):
         # Ensure to reference quotation_id's string representation
         quotation_str = str(self.quotation_id) if self.quotation_id else "No Quotation"
         return f"Purchase Order {str(self.purchase_id)}, Quotation {quotation_str}"
+
+def generate_shipment_id():
+    current_year = datetime.now().year
+    last_shipment = Shipment.objects.order_by('-shipment_id').first()
+    
+    if last_shipment:
+        try:
+            # Extract the numeric part of the shipment_id
+            last_number = int(last_shipment.shipment_id.split('-')[-1])
+        except (ValueError, IndexError):
+            # Handle cases where the shipment_id format is invalid
+            last_number = 0
+    else:
+        last_number = 0
+
+    # Increment the number and generate the new shipment_id
+    new_number = last_number + 1
+    return f"SHIP-{current_year}-{new_number:06d}"
+
+class Shipment(models.Model):
+    shipment_id = models.CharField(max_length=50, primary_key=True, blank=True)
+    # Other fields...
+
+    def save(self, *args, **kwargs):
+        if not self.shipment_id:
+            self.shipment_id = generate_shipment_id()
+        super().save(*args, **kwargs)

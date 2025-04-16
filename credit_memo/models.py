@@ -1,16 +1,12 @@
 from django.db import models
+from batch_inspection.models import Inspection  # Ensure this import is correct
 
-class BatchInspection(models.Model):
-    inspection_id = models.CharField(primary_key=True, max_length=255)
-
-    class Meta:
-        db_table = "batch_inspection"
-       
+    
 
 class CreditMemo(models.Model):
     credit_memo_id = models.CharField(primary_key=True, max_length=255)
     inspection = models.ForeignKey(
-        BatchInspection, 
+        Inspection,  # Use Inspection as the reference
         on_delete=models.CASCADE, 
         db_column="inspection_id"
     )

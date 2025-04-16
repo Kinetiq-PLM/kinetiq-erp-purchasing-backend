@@ -28,3 +28,11 @@ class PurchaseOrderUpdateStatusView(generics.UpdateAPIView):
             instance.save()
             return Response({'message': f'Status updated to {status}'}, status=http_status.HTTP_200_OK)
         return Response({'error': 'Status not provided'}, status=http_status.HTTP_400_BAD_REQUEST)
+    
+class PurchaseOrderEditView(generics.UpdateAPIView):
+    """
+    View to edit an existing PurchaseOrder.
+    """
+    queryset = PurchaseOrder.objects.all()
+    serializer_class = PurchaseOrderSerializer
+    lookup_field = 'purchase_id'  # Use 'purchase_id' as the lookup field
