@@ -10,11 +10,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RenameField(
-            model_name='apinvoice',
-            old_name='purchase_id',
-            new_name='purchase_order',
-        ),
+        
         migrations.AlterModelTable(
             name='apinvoice',
             table='purchase_invoice',

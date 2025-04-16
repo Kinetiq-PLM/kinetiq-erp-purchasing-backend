@@ -12,7 +12,7 @@ class PurchaseOrder(models.Model):
 
     purchase_id = models.CharField(max_length=50, primary_key=True, blank=True)
     quotation_id = models.ForeignKey(
-        PurchaseQuotation,
+        'purchase_quotation.PurchaseQuotation',
         on_delete=models.SET_NULL,
         null=True,
         blank=True,

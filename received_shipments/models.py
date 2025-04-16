@@ -2,6 +2,8 @@ import uuid
 from django.db import models
 from purchase_order.models import PurchaseOrder  # adjust import if needed
 from django.utils import timezone
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 class Shipment(models.Model):
     def generate_shipment_id():
@@ -29,3 +31,9 @@ class Shipment(models.Model):
 
     class Meta:
         db_table = 'received_shipments'
+       
+
+@receiver(pre_save, sender=Shipment)
+def set_shipment_id(sender, instance, **kwargs):
+    if not instance.shipment_id:
+        instance.shipment_id = Shipment.generate_shipment_id()

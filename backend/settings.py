@@ -102,31 +102,34 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# import os
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DB_NAME', 'Kinetiq-DB'),
-#         'USER': os.getenv('DB_USER', 'postgres'),
-#         'PASSWORD': os.getenv('DB_PASSWORD', 'KntBg3jIY0DbpH8G9bwt'),
-#         'HOST': os.getenv('DB_HOST', '127.0.0.1'),
-#         'PORT': os.getenv('DB_PORT', '15432'),
-#     }
-# }
-
+import os
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        "NAME": "Kinetiq-DB-Schema",
-        "USER": 'postgres',
-        "PASSWORD": '102418', 
-        "HOST": 'localhost', 
-        "PORT": '5432', 
-       "OPTIONS": {
-           "options": "-c search_path=purchasing,public",
-    }
+        'NAME': os.getenv('DB_NAME', 'Kinetiq-DB'),
+        'USER': os.getenv('DB_USER', 'postgres'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'KntBg3jIY0DbpH8G9bwt'),
+        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+        'PORT': os.getenv('DB_PORT', '15432'),
+        'OPTIONS': {
+            'options': '-c search_path=purchasing,public'
+        },
+    } 
 }
-}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         "NAME": "Kinetiq-DB-Schema",
+#         "USER": 'postgres',
+#         "PASSWORD": '102418', 
+#         "HOST": 'localhost', 
+#         "PORT": '5432', 
+#        "OPTIONS": {
+#            "options": "-c search_path=purchasing,public",
+#     }
+# }
+# }
 
 
 # Password validation

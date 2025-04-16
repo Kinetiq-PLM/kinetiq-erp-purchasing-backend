@@ -16,11 +16,7 @@ class Migration(migrations.Migration):
             model_name='apinvoice',
             name='purchase_id',
         ),
-        migrations.AddField(
-            model_name='apinvoice',
-            name='purchase_order',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='purchase_order.purchaseorder'),
-        ),
+       
         migrations.AlterField(
             model_name='apinvoice',
             name='invoice_id',
