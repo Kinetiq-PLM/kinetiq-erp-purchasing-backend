@@ -1,10 +1,6 @@
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework import generics  # Corrected import
 from .models import PurchaseRequest
 from .serializers import PurchaseRequestSerializer
 from rest_framework import generics
-from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Employee
 from .serializers import EmployeeSerializer
@@ -17,7 +13,7 @@ class EmployeeListView(generics.ListAPIView):  # ListAPIView for GET request
 
 # List view to get all purchase requests
 class PurchaseRequestListView(generics.ListAPIView):  # Use ListAPIView for GET request
-    queryset = PurchaseRequest.objects.all()
+    queryset = PurchaseRequest.objects.all()  # Filter for requests without approval
     serializer_class = PurchaseRequestSerializer
 
 # Submit view to create a new purchase request

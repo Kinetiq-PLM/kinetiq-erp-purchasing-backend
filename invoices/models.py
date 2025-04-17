@@ -11,7 +11,7 @@ class DocumentItems(models.Model):
 
 
 class ExternalModule(models.Model):
-    content_id = models.ForeignKey(
+    content_id = models.OneToOneField(  # Changed from ForeignKey to OneToOneField
         DocumentItems,  # Reference the DocumentItems model
         to_field='content_id',  # Use the content_id field in DocumentItems
         db_column='content_id',  # Map to the content_id column in the database

@@ -2,14 +2,12 @@
     "dev": {
         "aws_region": "ap-southeast-1",
         "django_settings": "backend.settings",
-        
         "exclude": [
             "boto3",
             "dateutil",
             "botocore",
             "s3transfer",
             "concurrent"
-            
         ],
         "profile_name": "default",
         "project_name": "kinetiq-erp-pur",
@@ -30,8 +28,7 @@
             "DB_USER": "postgres",
             "DB_PASSWORD": "KntBg3jIY0DbpH8G9bwt",
             "DB_HOST": "kinetiq-postgresql.c30ww0i2ytkm.ap-southeast-1.rds.amazonaws.com",
-            "DB_PORT": "15432"
+            "DB_PORT": "5432"
           }
-
     }
 }
