@@ -20,3 +20,8 @@ class PurchaseRequestListView(generics.ListAPIView):  # Use ListAPIView for GET 
 class PurchaseRequestSubmitView(generics.CreateAPIView):  # Use CreateAPIView for POST request
     queryset = PurchaseRequest.objects.all()
     serializer_class = PurchaseRequestSerializer
+
+class PurchaseRequestPendingApprovalListView(generics.ListAPIView):  # Use ListAPIView for GET request
+    """Retrieve a list of purchase requests without approval"""
+    queryset = PurchaseRequest.objects.filter(approval_id__isnull=True).order_by('document_date')  # Filter for requests without approval
+    serializer_class = PurchaseRequestSerializer
