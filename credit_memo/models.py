@@ -1,5 +1,6 @@
 from django.db import models
-from batch_inspection.models import Inspection  # Ensure this import is correct
+from batch_inspection.models import Inspection 
+from invoices.models import APInvoice 
 
     
 
@@ -9,6 +10,11 @@ class CreditMemo(models.Model):
         Inspection,  # Use Inspection as the reference
         on_delete=models.CASCADE, 
         db_column="inspection_id"
+    )
+    invoice_id = models.ForeignKey(
+        APInvoice,  # Reference to purchasing.purchase_invoice
+        on_delete=models.CASCADE,
+        db_column="invoice_id"
     )
     status = models.CharField(max_length=255)
     document_no = models.IntegerField()
