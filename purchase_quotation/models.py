@@ -3,11 +3,16 @@ from django.db import models
 
 class Vendor(models.Model):
     vendor_code = models.CharField(max_length=50, primary_key=True)
-    vendor_name = models.CharField(max_length=255, blank=True, null=True)
+    company_name = models.CharField(max_length=255, blank=True, null=True)
     contact_person = models.CharField(max_length=255, blank=True, null=True)
+    status = models.CharField(
+        max_length=50,
+        choices=[("Approved", "Approved"), ("Under Review", "Under Review"), ("Rejected", "Rejected")],
+        default="Approved",
+    )
 
     class Meta:
-        db_table = '"admin"."vendor"'
+        db_table = '"purchasing"."vendors"'
 
     def __str__(self):
         return self.vendor_code

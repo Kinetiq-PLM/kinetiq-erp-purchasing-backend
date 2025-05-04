@@ -15,16 +15,6 @@ class Employee(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.employee_id})"
 
-# Approval model
-class Approval(models.Model):
-    approval_id = models.CharField(max_length=50, primary_key=True)
-
-    class Meta:
-        db_table = '"management"."management_approvals"'
-
-    def __str__(self):
-        return f"Approval {self.approval_id}"
-
 
 class PurchaseRequest(models.Model):
     MATERIAL = 'MATERIAL'
@@ -34,7 +24,6 @@ class PurchaseRequest(models.Model):
 
     request_id = models.CharField(max_length=50, primary_key=True, blank=True)
     employee_id = models.CharField(max_length=50, blank=True, null=True)  # Changed to character varying
-    approval_id = models.CharField(max_length=50, blank=True, null=True)  # Changed to character varying
     valid_date = models.DateField()
     document_date = models.DateField()
     required_date = models.DateField()

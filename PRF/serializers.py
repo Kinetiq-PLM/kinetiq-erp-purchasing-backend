@@ -1,38 +1,20 @@
 from rest_framework import serializers
 from .models import PurchaseRequest
-from purchase_quotation.models import PurchaseQuotation  # Assuming the app name for PurchaseQuotation is `quotation_quotation`
-from .models import Employee, Approval
+from .models import Employee
 
 # Employee Serializer
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
-        fields = ['employee_id', 'first_name', 'last_name', 'dept_id', 'employment_type', 'status']
-
-# Approval Serializer
-class ApprovalSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Approval
-        fields = ['approval_id']
-
+        fields = '__all__'  # Include all fields from the Employee model
 
 # PurchaseRequest Serializer
 class PurchaseRequestSerializer(serializers.ModelSerializer):
-    employee = EmployeeSerializer(read_only=True)
-    approval = ApprovalSerializer(read_only=True)
+    employee = EmployeeSerializer(read_only=True)  # Include nested employee details (optional)
 
     class Meta:
         model = PurchaseRequest
-        fields = [
-            'request_id',
-            'employee_id',
-            'approval_id',
-            'approval',
-            'valid_date',
-            'document_date',
-            'required_date',
-            'employee'
-        ]
+        fields = '__all__'  # Automatically include all fields from the PurchaseRequest model
 
     def validate(self, data):
         if not data.get('employee_id'):

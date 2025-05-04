@@ -5,7 +5,7 @@ from purchase_quotation.models import Vendor # Import the related models
 class VendorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendor
-        fields = ['vendor_code', 'vendor_name', 'contact_person']
+        fields = "__all__"  
 
 
 

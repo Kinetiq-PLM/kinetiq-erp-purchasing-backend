@@ -44,3 +44,31 @@ class PurchaseQuotationEditView(generics.UpdateAPIView):
     queryset = PurchaseQuotation.objects.all()
     serializer_class = PurchaseQuotationSerializer
     lookup_field = 'quotation_id'  # Use 'quotation_id' as the lookup field
+
+
+class PurchaseQuotationUpdateStatusView(generics.UpdateAPIView):
+    """
+    View to update the status of a PurchaseQuotation.
+    """
+    queryset = PurchaseQuotation.objects.all()
+    serializer_class = PurchaseQuotationSerializer
+    lookup_field = 'quotation_id'  # Use 'quotation_id' as the lookup field
+
+    def partial_update(self, request, *args, **kwargs):
+        """
+        Handle PATCH requests to update only the status field.
+        """
+        instance = self.get_object()
+        status_value = request.data.get('status', None)
+
+        if status_value:
+            instance.status = status_value
+            instance.save()
+            return Response(
+                {"message": f"Status updated to {status_value}"},
+                status=status.HTTP_200_OK
+            )
+        return Response(
+            {"error": "Status not provided"},
+            status=status.HTTP_400_BAD_REQUEST
+        )

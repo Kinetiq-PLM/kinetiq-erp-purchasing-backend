@@ -4,10 +4,11 @@ from datetime import datetime
 
 class PurchaseOrder(models.Model):
     STATUS_CHOICES = [
-        ('Pending', 'Pending'),
-        ('Approved', 'Approved'),
+        ('Ordered', 'Ordered'),
+        ('Received', 'Received'),
         ('Completed', 'Completed'),
         ('Rejected', 'Rejected'),
+        ('Returned', 'Returned'),
     ]
 
     purchase_id = models.CharField(max_length=50, primary_key=True, blank=True)

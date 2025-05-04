@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PurchaseQuotationListView, PurchaseQuotationCreateView, VendorListView, PurchaseQuotationDocumentNoListView, PurchaseQuotationEditView
+from .views import PurchaseQuotationListView, PurchaseQuotationCreateView, VendorListView, PurchaseQuotationDocumentNoListView, PurchaseQuotationEditView, PurchaseQuotationUpdateStatusView
 
 urlpatterns = [
     path('list/', PurchaseQuotationListView.as_view(), name='purchase-quotation-list'),
@@ -7,4 +7,5 @@ urlpatterns = [
     path('vendor/list/', VendorListView.as_view(), name='vendor-list'),  # Assuming you have a VendorListView
     path('edit/<str:quotation_id>/', PurchaseQuotationEditView.as_view(), name='purchase-quotation-edit'),
     path('document/list/', PurchaseQuotationDocumentNoListView.as_view(), name='quotation-by-document-no'),
+    path('update/<str:quotation_id>/', PurchaseQuotationUpdateStatusView.as_view(), name='purchase-quotation-update-status'),
 ]

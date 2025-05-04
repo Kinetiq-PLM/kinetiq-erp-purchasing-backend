@@ -1,14 +1,14 @@
 from django.contrib import admin
-from .models import PurchaseRequest, Employee, Approval
+from .models import PurchaseRequest, Employee
 
 class PurchaseRequestAdmin(admin.ModelAdmin):
-    list_display = ['request_id', 'employee_id', 'approval_id', 'valid_date', 'document_date', 'required_date',  ]
+    list_display = ['request_id', 'employee_id', 'valid_date', 'document_date', 'required_date',  ]
   
-    search_fields = ['request_id', 'employee_id__first_name', 'employee_id__last_name', 'approval_id__approval_id']
+    search_fields = ['request_id', 'employee_id__first_name', 'employee_id__last_name']
 
     fieldsets = (
         (None, {
-            'fields': ('request_id', 'employee_id', 'approval_id', 'valid_date', 'document_date', 'required_date',)
+            'fields': ('request_id', 'employee_id', 'valid_date', 'document_date', 'required_date',)
         }),
     )
 
@@ -23,4 +23,3 @@ class EmployeeAdmin(admin.ModelAdmin):
 # Register models with their custom admin views
 admin.site.register(PurchaseRequest, PurchaseRequestAdmin)
 admin.site.register(Employee, EmployeeAdmin)  # Make sure you're registering Employee with the custom admin
-admin.site.register(Approval)

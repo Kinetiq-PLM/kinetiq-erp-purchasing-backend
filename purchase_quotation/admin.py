@@ -24,7 +24,7 @@ class PurchaseQuotationAdmin(admin.ModelAdmin):
     get_vendor_code.short_description = 'Vendor Code'
 
 class VendorAdmin(admin.ModelAdmin):
-    list_display = ('vendor_code','vendor_name', 'contact_person')
+    list_display = ('vendor_code','company_name', 'contact_person')
     search_fields = ('vendor_code',)
 
 admin.site.register(PurchaseQuotation, PurchaseQuotationAdmin)
