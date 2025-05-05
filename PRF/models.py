@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import date
 # Employee model
 class Employee(models.Model):
     employee_id = models.CharField(max_length=50, primary_key=True)
@@ -17,20 +17,35 @@ class Employee(models.Model):
 
 
 class PurchaseRequest(models.Model):
-    MATERIAL = 'MATERIAL'
-    ASSETS = 'ASSETS'
-
-    
+     # Status choices
+    STATUS_CHOICES = [
+        ("Pending", "Pending"),
+        ("Acknowledged", "Acknowledged"),
+        ("Approved", "Approved"),
+        ("Finished", "Finished"),
+        ("Cancelled", "Cancelled"),
+        ("Rejected", "Rejected"),
+        ("Returned", "Returned"),
+        ("Expired", "Expired"),
+    ]
 
     request_id = models.CharField(max_length=50, primary_key=True, blank=True)
     employee_id = models.CharField(max_length=50, blank=True, null=True)  # Changed to character varying
     valid_date = models.DateField()
     document_date = models.DateField()
     required_date = models.DateField()
-
-    
+    status = models.CharField(
+        max_length=50,
+        choices=STATUS_CHOICES,
+        default="Pending",  # Default status
+    )
 
     def save(self, *args, **kwargs):
+        # Automatically update status to "Expired" if valid_date has passed
+        if self.valid_date and self.valid_date < date.today() and self.status != "Expired":
+            self.status = "Expired"
+            print(f"Status automatically updated to 'Expired' for Request ID: {self.request_id}")
+
         if not self.request_id:
             last_request = PurchaseRequest.objects.filter(request_id__startswith="PURCHASING-PUR-").order_by('-request_id').first()
             if last_request:

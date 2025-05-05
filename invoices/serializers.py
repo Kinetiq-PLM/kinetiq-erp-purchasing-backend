@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import APInvoice, ExternalModule, DocumentItems  # Ensure ExternalModule and DocumentItems are imported
+from .models import APInvoice, DocumentHeader # Ensure ExternalModule and DocumentItems are imported
 
 
 class APInvoiceSerializer(serializers.ModelSerializer):
@@ -8,13 +8,7 @@ class APInvoiceSerializer(serializers.ModelSerializer):
         fields = "__all__"  # Include all fields from the APInvoice model
 
 
-class ExternalModuleSerializer(serializers.ModelSerializer):
+class DocumentHeaderSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ExternalModule
-        fields = "__all__"  # Include all fields from the ExternalModule model
-
-
-class DocumentItemsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = DocumentItems
+        model = DocumentHeader
         fields = "__all__"  # Include all fields from the DocumentItems model
