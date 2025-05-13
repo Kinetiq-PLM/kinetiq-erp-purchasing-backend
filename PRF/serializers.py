@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import PurchaseRequest
 from .models import Employee
+from .models import Department
 
 # Employee Serializer
 class EmployeeSerializer(serializers.ModelSerializer):
@@ -20,3 +21,9 @@ class PurchaseRequestSerializer(serializers.ModelSerializer):
         if not data.get('employee_id'):
             raise serializers.ValidationError("Employee ID is required.")
         return data
+
+#Department Serializer
+class DepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Department
+        fields = '__all__'  # Include all fields from the Department model

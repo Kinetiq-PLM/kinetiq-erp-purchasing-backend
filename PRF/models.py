@@ -14,6 +14,16 @@ class Employee(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.employee_id})"
+# Department model
+class Department(models.Model):
+    dept_id = models.CharField(max_length=50, primary_key=True)
+    dept_name = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        db_table = '"human_resources"."departments"'
+
+    def __str__(self):
+        return f"{self.dept_name} ({self.dept_id})"
 
 
 class PurchaseRequest(models.Model):

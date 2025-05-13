@@ -1,8 +1,8 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import PurchaseRequest, Employee
-from .serializers import PurchaseRequestSerializer, EmployeeSerializer
+from .models import PurchaseRequest, Employee, Department
+from .serializers import PurchaseRequestSerializer, EmployeeSerializer, DepartmentSerializer
 
 class PurchaseRequestUpdateStatusView(generics.UpdateAPIView):
     """
@@ -44,3 +44,10 @@ class PurchaseRequestSubmitView(generics.CreateAPIView):
     """
     queryset = PurchaseRequest.objects.all()
     serializer_class = PurchaseRequestSerializer
+
+class DepartmentListView(generics.ListAPIView):
+    """
+    View to retrieve a list of all departments.
+    """
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer
